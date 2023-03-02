@@ -4,7 +4,7 @@
 
 ## Objectif: Répertorier et présenter mes projets
 
-- Répertorier et présenter mes projets
+- Inventaire de mes projets multimédia
 - Info de contact
 - Liens vers mes activités professionnelles en ligne
 - Explorer et m'amuser en CSS et JS
