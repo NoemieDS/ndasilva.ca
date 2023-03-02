@@ -585,7 +585,7 @@ main > section:first-of-type {
   /*Animation du déplacement de Petite Mimi*/
   animation: /* apparition-petite-mimi 1800ms 200ms
       cubic-bezier(0.23, 0.1, 0.38, 0.89) backwards, */
-    deplacement-petite-mimi 16s 3s linear infinite ;
+    deplacement-petite-mimi 24s 3s linear infinite ;
 }
 
 /*Animations du déplacement du div contenant Petite Mimi et le vent */
