@@ -1,0 +1,1088 @@
+/* Normalisation supplémentaire */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  scroll-behavior: smooth;
+  /* Ajuster la taille de base du texte à la racine du document */
+  font-size: clamp(12px, 0.75rem + 1vw, 24px);
+  font-family: "DM Sans", sans-serif;
+  background-attachment: fixed;
+  background-image: url("../images/ndasilva_portrait_575px.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* Conteneur principal */
+.conteneur {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main.contenu {
+  min-height: 100%;
+  /*IMPORTANT - Empêcher que le contenu attrape les clics de souris...*/
+  pointer-events: none;
+}
+
+section {
+  width: 100%;
+  min-height: 100%;
+  /*Conteneur flex en colonne*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style général des liens */
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: rgba(107, 219, 191, 1);
+}
+
+a:hover {
+  color: burlywood;
+}
+
+/* Mise en page pour les petits périphériques
+        ==================================================================================================================== */
+
+/* Éléments de la page du menu
+        ==================================================================================================================== */
+
+.menu-conteneur {
+  max-height: 100%;
+}
+
+.barre-menu {
+  width: 100%;
+  height: 10vh;
+  position: fixed;
+  top: 0;
+
+  /*Conteneur flex en rangée*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Est au dessus de tout */
+  z-index: 50;
+}
+
+/*h1*/
+.barre-menu-nom {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+
+  /*Marge en haut- si jamais la fenêtre est très petite en hauteur, pour pas que ce soit hors du viewport, et à gauche*/
+  margin: 10vmin 0 0 10vmin;
+  font-weight: 700;
+
+  /*Non visible au démarrage et est déplacé en haut du viewport*/
+  opacity: 0;
+  transform: translateY(-20vh);
+
+  /*IMPORTANT - Empêcher que le contenu attrape les clics de souris...*/
+  pointer-events: none;
+}
+
+/* Pas de majuscule sur la lettre d */
+#menu-nom-d {
+  text-transform: none;
+}
+
+/* Menu Burger 
+         ================================================================================================== */
+
+/* Styles des icônes Google "material-icons" */
+.bouton-icone-ouvrir,
+.bouton-icone-fermer {
+  font-size: 2.2rem;
+  /*Étirement vers le haut*/
+  transform: scaleY(1.3);
+
+  position: relative;
+  left: 1.2rem;
+
+  /* le curseur change */
+  cursor: pointer;
+
+  /*Transition lorsque la case à cocher sera décochée */
+  transition: opacity 400ms, transform 600ms;
+}
+
+/* l'icone du menu burger est visible au démarrage */
+.bouton-icone-ouvrir {
+  opacity: 1;
+}
+
+/* l'icone de fermeture du menu burger n'est pas visible au démarrage */
+.bouton-icone-fermer {
+  opacity: 0;
+  /*On place l'icône par dessus celle du menu burger */
+  transform: translateX(-2.6rem);
+  /*Transition lorsque la case à cocher sera décochée */
+  transition: opacity 200ms;
+}
+
+/*La navigation interne du site  - balise <nav> */
+.menu {
+  width: 100%;
+  /*Position fixe, sous la barre de menu. La hauteur est 100vh - barre de menu - footer*/
+  position: fixed;
+  top: 10vh;
+  height: 65vh;
+
+  /*Conteneur flex en colonne avec éléments centrés qui peuvent wrapper */
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  /* peut s'étirer et rétrécir en hauteur */
+  flex: 1 1 auto;
+
+  /*Au démarrage le menu n'est pas visible*/
+  opacity: 0;
+
+  /*IMPORTANT - Empêcher que le contenu attrape les clics de souris...*/
+  pointer-events: none;
+}
+
+.menu a {
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: burlywood;
+  padding-bottom: 2.5rem;
+
+  /*Au démarrage les ancres ne sont pas visibles*/
+  opacity: 0;
+}
+
+.menu a:hover {
+  color: rgba(210, 4, 45, 1);
+}
+
+/* Style du pied-de-page (footer)
+      ==================================================================================== */
+
+.liens-externes {
+  width: 100%;
+  /*Position fixe en bas du viewport, à 90vh du top avec une hauteur de 10vh*/
+  position: fixed;
+  top: 85vh;
+  height: 15vh;
+
+  /*Conteneur flex en colonne avec éléments centrés au milieu*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /*IMPORTANT - Empêcher que le contenu attrape les clics de souris...
+       pointer-events: none;*/
+
+  /*Au démarrage le footer n'est pas visible et est à l'extérieur du viewport*/
+  opacity: 0;
+  transform: translateY(120%);
+}
+
+.liens-externes-nav {
+  width: 100%;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-evenly;
+  /* Peuvent d'agrandir */
+  flex: 1 1 auto;
+}
+
+/* Copyright, nom, année */
+.liens-externes div:last-of-type p {
+  padding: 3rem;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  /*IMPORTANT - Empêcher que le contenu attrape les clics de souris...*/
+  pointer-events: none;
+}
+
+/* Le div de la couleur diffusée sur l'image de fond */
+.couleur {
+  width: 20vw;
+  height: 20vw;
+  /* est sous les autres éléments*/
+  position: fixed;
+  z-index: -1;
+
+  background-image: linear-gradient(
+    rgb(230, 117, 117),
+    rgba(107, 219, 191, 0.5)
+  );
+  /* background-image: linear-gradient(rgba(210, 4, 45, 0.9), rgba(0, 162, 255, 0.5));*/
+  border-radius: 50%;
+  filter: blur(6rem);
+  /*non visible au démarrage*/
+  opacity: 0;
+}
+
+/* États des différents éléments lorsque la case à cocher est cochée
+ ==================================================================================== */
+
+#cc-menu-burger:checked ~ .contenu {
+  opacity: 0;
+}
+
+/*le h1, le menu et le footer deviennent visibles et changent de propriétés*/
+#cc-menu-burger:checked + .menu-conteneur .barre-menu-nom,
+#cc-menu-burger:checked + .menu-conteneur .menu,
+#cc-menu-burger:checked + .menu-conteneur .liens-externes {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+#cc-menu-burger:checked + .menu-conteneur .menu,
+#cc-menu-burger:checked + .menu-conteneur .liens-externes {
+  /*IMPORTANT - on remet le contenu attrape les clics de souris...*/
+  pointer-events: all;
+}
+
+/* Le h1 de la barre du menu arrive par le haut, avec un délai */
+#cc-menu-burger:checked + .menu-conteneur .barre-menu-nom {
+  transform: translateY(0vh);
+  transition: transform 1.2s 600ms;
+}
+
+/* L'icône d'ouverture du menu burger est retirée lorsque la case à cocher est cochée */
+#cc-menu-burger:checked + .menu-conteneur .bouton-icone-ouvrir {
+  transform: translateX(200%);
+  opacity: 0;
+  transition: transform 600ms opacity 400ms;
+}
+
+/* L'icône de fermeture du menu burger est visible lorsque la case à cocher est cochée */
+#cc-menu-burger:checked + .menu-conteneur .bouton-icone-fermer {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+
+/***Les ancres deviennent visibles avec une animation et différents délais*************/
+
+#cc-menu-burger:checked + .menu-conteneur .menu a {
+  opacity: 1;
+  transition: opacity 400ms;
+  animation: animer-menu 8s 1s ease-in-out infinite;
+}
+
+@keyframes animer-menu {
+  from,
+  to {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.1, 1.3) translateY(0rem);
+  }
+}
+
+#cc-menu-burger:checked + .menu-conteneur .menu a:nth-child(2) {
+  transition-delay: 200ms;
+}
+
+#cc-menu-burger:checked + .menu-conteneur .menu a:nth-child(3) {
+  transition-delay: 400ms;
+}
+
+#cc-menu-burger:checked + .menu-conteneur .menu a:nth-child(4) {
+  transition-delay: 600ms;
+}
+
+#cc-menu-burger:checked + .menu-conteneur .menu a:nth-child(5) {
+  transition-delay: 800ms;
+}
+
+/* le footer entre dans le viewport, avec un délai*/
+#cc-menu-burger:checked + .menu-conteneur .liens-externes {
+  transform: translateY(0%);
+  transition: opacity 3s, transform 1s 500ms;
+}
+
+/*On cache la case à cocher*/
+#cc-menu-burger {
+  display: none;
+}
+
+#cc-menu-burger:checked + .menu-conteneur .couleur {
+  opacity: 1;
+  transition: opacity 1s 1s;
+  /*compte-tenu de l'animation du blur (expérimental), pas de cubic bezier 
+    - après de nombreux tests sur plusieurs appareils et navigateurs, 
+    les paramètres par défaut offrent de meilleurs performances*/
+  animation: animer-couleur 6s ease-in-out infinite alternate;
+}
+
+@keyframes animer-couleur {
+  from,
+  to {
+    transform: translate(-5vw, -5vh) scale(1);
+  }
+
+  50% {
+    transform: translate(50vw, 50vh) scale(10);
+  }
+}
+
+/* Main
+ ==================================================================================== */
+
+/* Les sections
+ ====================================================================================================================== */
+
+/* Section 1 : Accueil
+ ====================================================================================================================== */
+
+main > section:first-of-type {
+  /* background-color: rgba(222,184,135, 1); */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 162, 255, 0.4),
+    rgba(0, 162, 255, 0.1)
+  );
+  /* les deux conteneurs (.nom et .conteneur-fond-petite-mimi)* peuvent grossir, rapetisser et sont égaux */
+  flex: 1 1 100%;
+  height: 100%;
+}
+
+.nom {
+  background-color: burlywood;
+  order: 2;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  padding: 2rem 2.2rem 2rem 2rem;
+}
+
+.nom span {
+  letter-spacing: -0.6rem;
+  display: inline-block;
+  opacity: 0;
+}
+
+@keyframes nom {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+
+  25%,
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.nom-prenom span:nth-child(1) {
+  animation: nom 6.5s ease-out infinite;
+}
+
+.nom-prenom span:nth-child(2) {
+  animation: nom 6.5s 200ms ease-out infinite;
+}
+
+.nom-prenom span:nth-child(3) {
+  animation: nom 6.5s 400ms ease-out infinite;
+}
+
+.nom-prenom span:nth-child(4) {
+  animation: nom 6.5s 600ms ease-out infinite;
+}
+
+.nom-prenom span:nth-child(5) {
+  animation: nom 6.5s 800ms ease-out infinite;
+}
+
+.nom-prenom span:nth-child(6) {
+  animation: nom 6.5s 1s ease-out infinite;
+}
+
+/* Nom de famille */
+.nom-famille span:nth-child(1) {
+  animation: nom 6.5s 1.2s ease-out infinite;
+}
+
+.nom-famille span:nth-child(2) {
+  animation: nom 6.5s 1.4s ease-out infinite;
+}
+
+/* On saute un span entre da et Silva */
+.nom-famille span:nth-child(4) {
+  animation: nom 6.5s 1.6s ease-out infinite;
+}
+
+.nom-famille span:nth-child(5) {
+  animation: nom 6.5s 1.8s ease-out infinite;
+}
+
+.nom-famille span:nth-child(6) {
+  animation: nom 6.5s 2s ease-out infinite;
+}
+
+.nom-famille span:nth-child(7) {
+  /*ajustement espace entre les lettres - police non monotype*/
+  margin-left: -0.4rem;
+  animation: nom 6.5s 2.2s ease-out infinite;
+}
+
+.nom-famille span:nth-child(8) {
+  /*ajustement espace entre les lettres - police non monotype*/
+  margin-left: -0.4rem;
+  animation: nom 6.5s 2.4s ease-out infinite;
+}
+
+/************** Animation de Petite Mimi -  **********************/
+
+.conteneur-fond-petite-mimi {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(210, 4, 45, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* le fond arrive avec la même animation que Petite Mimi, puis alterne de couleur avec une 2e animation*/
+  animation: apparition-petite-mimi 1800ms 200ms
+      cubic-bezier(0.23, 0.1, 0.38, 0.89) backwards,
+    fond-petite-mimi 4s 4s infinite alternate-reverse;
+}
+
+/* Animations de la couleur de fond */
+@keyframes fond-petite-mimi {
+  from,
+  to {
+    background-color: rgba(210, 4, 45, 1);
+  }
+
+  50% {
+    background-color: rgba(210, 4, 45, 0);
+  }
+}
+
+/**********Animation par étapes d'une feuille de sprite ***************************************************/
+
+.petite-mimi {
+  /*Changement d'ordre dans le conteneur flex */
+  order: 2;
+  background-image: url("../images/mimiCourseDroite_152px.png");
+
+  /*Dimensions des vignettes (frames)*/
+  height: 152px;
+  width: 98px;
+
+  /*Animation de la feuille de sprites de Petite Mimi pour 8 images...*/
+  animation: animer-petite-mimi 800ms steps(8, end) infinite;
+}
+
+/*Animation de la feuille de sprites : animer-petite-mimi */
+@keyframes animer-petite-mimi {
+  from {
+    background-position: 0px;
+  }
+
+  to {
+    background-position: -784px;
+  }
+}
+
+/******Création du vent ***********************************/
+
+.mimi-vent {
+  width: 70px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  /*Changement d'ordre dans le conteneur flex */
+  order: 1;
+  gap: 2px;
+  transform: translate(1rem, -0.1rem);
+}
+
+.mimi-vent > div {
+  background-color: gray;
+  width: 20px;
+  height: 20px;
+  border-radius: 40%;
+  flex-basis: 100%;
+  filter: blur(2px);
+  box-shadow: 3px 3px 3px rgba(222, 184, 135, 0.5);
+}
+
+.mimi-vent div:nth-child(1) {
+  background-color: rgba(191, 210, 219, 0.5);
+  transform: scale(0.5, 0.5);
+  align-self: flex-start;
+  animation: animer-nuage 700ms 100ms ease-in-out infinite;
+}
+
+.mimi-vent div:nth-child(2) {
+  background-color: rgba(191, 210, 219, 0.7);
+  transform: scale(0.75, 0.75);
+  animation: animer-nuage 700ms 50ms ease-in-out infinite;
+}
+
+.mimi-vent div:nth-child(3) {
+  background-color: rgba(191, 210, 219, 0.9);
+  animation: animer-nuage 700ms ease-in-out infinite;
+}
+
+@keyframes animer-nuage {
+  from {
+    opacity: 0;
+    transform: translate(0, 0) scale(auto);
+    animation-timing-function: cubic-bezier(0.28, 0.66, 0.28, 0.97);
+  }
+
+  50% {
+    transform: translate(-20px, -10px) scale(0.25, 0.25);
+    animation-timing-function: cubic-bezier(0.37, 0.12, 0.93, 0.61);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(auto);
+    animation-timing-function: cubic-bezier(0.28, 0.66, 0.28, 0.97);
+  }
+}
+
+/* conteneur contenant l'animation de la feuille de sprite de Petite Mimi et le vent */
+.deplacement-petite-mimi {
+  align-items: flex-start;
+  justify-content: center;
+  order: 1;
+  /* ses enfants sont aussi flex */
+  display: flex;
+  flex-direction: row;
+
+  transform-origin: bottom center;
+
+  /*Animation du déplacement de Petite Mimi*/
+  animation: /* apparition-petite-mimi 1800ms 200ms
+      cubic-bezier(0.23, 0.1, 0.38, 0.89) backwards, */
+    deplacement-petite-mimi 16s 3s linear infinite ;
+}
+
+/*Animations du déplacement du div contenant Petite Mimi et le vent */
+@keyframes apparition-petite-mimi {
+  from {
+    opacity: 0;
+    transform: translateX(-60vw);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+
+@keyframes deplacement-petite-mimi {
+  from,
+  to {
+    transform: translateX(0vw);
+    opacity: 1;
+  }
+
+  25.5%,
+  75% {
+    transform: translateX(80vw);
+    opacity: 1;
+  }
+
+  /*changement d'opacité - devient invisible */
+
+  25.51%,
+  75.1% {
+    transform: translateX(80vw);
+    opacity: 0;
+  }
+
+  /*change à l'exétrieur du côté gauche du viewport */
+
+  25.52%,
+  75.2% {
+    transform: translateX(-80vw);
+    opacity: 0;
+  }
+
+  /* redevient visible */
+  25.53%,
+  75.3% {
+    transform: translateX(-80vw);
+    opacity: 1;
+  }
+
+}
+
+/* Pour les divs des sections 2 (et peut-être d'autres) 
+ ======================================================================================================================= */
+.apparition {
+  /* Au démarrage, les éléments ne sont pas visibles, 
+  ils apparaitront par JavaScript lors du défilement de la page */
+  opacity: 0;
+}
+
+@keyframes fondu-apparition {
+  from {
+    transform: translateY(12vh);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0vh);
+    opacity: 1;
+  }
+}
+
+/*Classe pour révéler par animation les blocs de texte lors du défilement de la page 
+   - contrôlé par JavaScript */
+.active.fondu-apparition {
+  animation: fondu-apparition 4s cubic-bezier(0, 0.82, 0.39, 1.24) forwards;
+}
+
+/* Section 2 : Info
+ ======================================================================================================================= */
+
+#info {
+  background-color: rgba(2, 2, 2, 0.4);
+}
+
+.info-conteneur {
+  width: 80%;
+  height: 90%;
+  background-color: rgba(2, 2, 2, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.boite-texte {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info-texte {
+  padding: 1rem;
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+.info-texte-1 {
+  background: linear-gradient(180deg, burlywood, rgb(210, 4, 45));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.info-texte-2 {
+  background: linear-gradient(180deg, rgb(210, 4, 45), burlywood);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.info-texte-3 {
+  background: linear-gradient(180deg, burlywood, rgba(0, 162, 255, 0.8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.info-texte-4 {
+  color: burlywood;
+}
+
+/* Section 3 : Projets
+ ======================================================================================================================= */
+
+#projets {
+  font-size: clamp(14px, 0.65rem + 1vw, 24px);
+  width: 100%;
+  min-height: 100%;
+}
+
+#projets h2 {
+  color: rgb(210, 4, 45);
+  padding: 2rem;
+  font-size: 2em;
+}
+
+#projets h3 {
+  padding: 0.5rem;
+  font-size: 1em;
+}
+
+.projets-conteneur {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 2, 2, 0.4),
+    rgba(0, 162, 255, 0.1)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.projets-categorie {
+  width: 80%;
+  background: rgba(107, 219, 191, 0.8);
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projets-table {
+  width: 100%;
+  background-color: rgba(2, 2, 2, 0.4);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  font-size: 0.8em;
+}
+
+.projets-rangee {
+  color: burlywood;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex: 1 1 100%;
+  border-bottom: 0.2em dotted rgba(2, 2, 2, 0.4);
+}
+
+.projets-cellule {
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex: 1 1 100%;
+  padding: 1rem;
+}
+
+.projets-lien {
+  /*IMPORTANT - on remet le contenu attrape les clics de souris...*/
+  pointer-events: all;
+  cursor: pointer;
+}
+
+/* div "footer"
+ ======================================================================================================================= */
+
+.liens-externes-2 {
+  width: 100%;
+  /*Conteneur flex en colonne avec éléments centrés au milieu*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+  background-color: rgba(2, 2, 2, 0.4);
+}
+
+.liens-externes-nav-2 {
+  width: 100%;
+  font-size: 0.8rem;
+  padding-top: 2.6rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Copyright, nom, année */
+.liens-externes-2 div:last-of-type p {
+  padding: 2rem;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Requêtes média
+ ==================================================================================== */
+
+/* Ajustements pour les écrans étroits
+  ==================================================================================== */
+@media screen and (max-width: 768px) and (min-height: 850px) {
+  /*Section  info */
+  .info-texte {
+    padding: 1rem 2rem;
+    line-height: 1.6rem;
+  }
+
+  .projets-rangee {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Style de base pour orientation paysage
+ ==================================================================================== */
+
+@media screen and (orientation: landscape) {
+  html {
+    background-image: url("../images/ndasilva_paysage_575px.jpg");
+    /* Ajuster la taille de base du texte à la racine du document */
+    font-size: clamp(12px, 0.5rem + 1vw, 24px);
+  }
+
+  .menu {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .couleur {
+    width: 12vw;
+    height: 12vh;
+  }
+
+  /* le nom de la page d'accueil devient flex en rangée et prend moins de place que le conteneur
+       avec l'animation de Petite Mimi */
+  .nom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    align-items: flex-start;
+    flex: 1 1 50%;
+  }
+
+  .projets-rangee {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Style pour les écrans petits
+  ==================================================================================== */
+@media screen and (min-width: 576px) {
+  html {
+    background-image: url("../images/ndasilva_portrait_767px.jpg");
+  }
+}
+
+/*Orientation paysage */
+@media screen and (min-width: 576px) and (orientation: landscape) {
+  html {
+    background-image: url("../images/ndasilva_paysage_767px.jpg");
+  }
+}
+
+/* Style pour les écrans moyen 
+ ==================================================================================== */
+@media screen and (min-width: 768px) {
+  html {
+    background-image: url("../images/ndasilva_portrait_991px.jpg");
+  }
+
+  #cc-menu-burger:checked + .menu-conteneur .couleur {
+    animation-duration: 8s;
+  }
+
+  .projets-rangee {
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  /* Si les critères sont rencontrés, on change le sprite de Petite Mimi pour un plus grand - 
+    ne peut pas s'appliquer aux téléphones car ils sont trop étroits  */
+
+  .petite-mimi {
+    background-image: url("../images/mimiCourseDroite_257px.png");
+
+    /*Dimensions des vignettes (frames)*/
+    height: 257px;
+    width: 166px;
+  }
+
+  /*Animation de la feuille de sprites : animer-petite-mimi */
+  @keyframes animer-petite-mimi {
+    from {
+      background-position: 0px;
+    }
+
+    to {
+      background-position: -1328px;
+    }
+  }
+
+  /*Section info */
+  .info-texte {
+    padding: 1rem 4rem;
+    line-height: 1.7rem;
+  }
+}
+
+/*format rectangulaire */
+@media screen and (min-width: 768px) and (min-height: 700px) {
+  html {
+    background-image: url("../images/ndasilva_paysage_991px.jpg");
+  }
+
+  .petite-mimi {
+    background-image: url("../images/mimiCourseDroite_257px.png");
+
+    /*Dimensions des vignettes (frames)*/
+    height: 257px;
+    width: 166px;
+  }
+
+  /*Animation de la feuille de sprites : animer-petite-mimi */
+  @keyframes animer-petite-mimi {
+    from {
+      background-position: 0px;
+    }
+
+    to {
+      background-position: -1328px;
+    }
+  }
+}
+
+/*Orientation paysage */
+@media screen and (min-width: 768px) and (orientation: landscape) {
+  html {
+    background-image: url("../images/ndasilva_paysage_991px.jpg");
+  }
+
+  /*Section info */
+  .info-texte {
+    padding: 1rem 2rem;
+    line-height: 1.6rem;
+  }
+}
+
+/* Style pour les écrans large
+ ==================================================================================== */
+@media screen and (min-width: 992px) {
+  html {
+    background-image: url("../images/ndasilva_portrait_1199px.jpg");
+  }
+}
+
+/*Orientation paysage */
+@media screen and (min-width: 992px) and (orientation: landscape) {
+  html {
+    background-image: url("../images/ndasilva_paysage_1199px.jpg");
+
+    /* On change style de base */
+    font-size: clamp(12px, 0.65rem + 1vw, 24px);
+  }
+
+  /* Si les critères sont rencontrés, on change le sprite de Petite Mimi pour un plus grand */
+  .petite-mimi {
+    background-image: url("../images/mimiCourseDroite_257px.png");
+
+    /*Dimensions des vignettes (frames)*/
+    height: 257px;
+    width: 166px;
+  }
+
+  /*Animation de la feuille de sprites : animer-petite-mimi */
+  @keyframes animer-petite-mimi {
+    from {
+      background-position: 0px;
+    }
+
+    to {
+      background-position: -1328px;
+    }
+  }
+}
+
+/* Style pour les écrans x-large
+ ==================================================================================== */
+@media screen and (min-width: 1200px) {
+  html {
+    background-image: url("../images/ndasilva_portrait_1399px.jpg");
+  }
+
+  /*Section info */
+  .info-conteneur {
+    padding: 10%;
+  }
+
+  .info-texte {
+    font-size: 1em;
+    padding: 1em 2rem;
+    line-height: 1.2em;
+  }
+}
+
+/*Orientation paysage */
+@media screen and (min-width: 1200px) and (orientation: landscape) {
+  html {
+    background-image: url("../images/ndasilva_paysage_1399px.jpg");
+  }
+  /*
+       .barre-menu-nom {
+           margin: 10vmin 0 0 15vmin;
+       }
+
+       .bouton-icone-ouvrir,
+       .bouton-icone-fermer {
+           top: 1.8rem;
+           left: -4rem;
+       }
+*/
+}
+
+/* Style pour les écrans xx-large
+ ====================================================================================*/
+@media screen and (min-width: 1400px) {
+  html {
+    background-image: url("../images/ndasilva_portrait_2800px.jpg");
+  }
+}
+
+/*Orientation paysage */
+@media screen and (min-width: 1400px) and (orientation: landscape) {
+  html {
+    background-image: url("../images/ndasilva_paysage_2800px.jpg");
+
+    /* On augmente le style de départ */
+    font-size: clamp(12px, 0.75rem + 1vw, 24px);
+  }
+}
+
+/* Style pour les écrans xxx-large
+ ====================================================================================*/
+@media screen and (min-width: 2200px) {
+  /*   html {
+           background-image: url('../images/ndasilva_paysage_3900px.jpg');
+           
+       }*/
+
+  /*Section info et projets */
+  .info-conteneur {
+    padding: 15%;
+  }
+}
