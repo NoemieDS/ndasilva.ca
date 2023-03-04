@@ -4,7 +4,7 @@
 
 ## Objectif: Répertorier et présenter mes projets
 
-#### Implémenté :
+#### Implémentés :
 - Liste de mes projets multimédia
 - Info de contact
 - Liens vers mes activités professionnelles en ligne
